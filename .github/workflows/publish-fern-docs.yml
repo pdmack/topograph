@@ -56,8 +56,8 @@ jobs:
 
       - name: Install yq
         run: |
-          if command -v yq &>/dev/null; then
-            echo "yq already installed: $(yq --version)"
+          if command -v yq &>/dev/null && yq --version | grep -q "version ${YQ_VERSION}"; then
+            echo "yq ${YQ_VERSION} already installed"
           else
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             ARCH=$(uname -m)
